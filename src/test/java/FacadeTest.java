@@ -58,6 +58,18 @@ public class FacadeTest {
         assertEquals("Fagteknik-19", sem.getName());
     }
     
+    @Test
+    public void testFindStudentsLastnameAnd() {
+        List<Student> andStudents = facade.findStudentsLastnameAnd();
+        assertEquals(2, andStudents.size());
+    }
+    
+    @Test
+    public void testFindStudentsForSemester() {
+        List<Student> studentsForSemester = facade.findStudentsForSemester("CLcos-v14e");
+        assertEquals(2, studentsForSemester.size());
+    }
+    
     
     @BeforeClass
     public static void setUpClass() {

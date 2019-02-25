@@ -68,7 +68,23 @@ public class Facade {
         } finally {
             em.close();
         }
+    }
+    
+        public List<Student> findStudentsLastnameAnd() {
+        EntityManager em = emf.createEntityManager();
         
+        Query q = em.createQuery("SELECT s FROM Student s WHERE s.lastname = :lastname");
+        List<Student> andStudents = q.setParameter("lastname", "And").getResultList();
+        return andStudents;   
+    }
+
+    public List<Student> findStudentsForSemester(String name) {
+        EntityManager em = emf.createEntityManager();
+        
+        Query q = em.createQuery("SELECT COUNT(s) FROM Semester s WHERE s.name = :name");
+        q.setParameter("name", name);
+        List<Student> studentsForSemester = q.getResultList();
+        return studentsForSemester;
     }
     
     
