@@ -78,11 +78,11 @@ public class Facade {
         return andStudents;   
     }
 
-    public List<Student> findStudentsForSemester(String name) {
+    public List<Student> findStudentsForSemester(String semesterName) {
         EntityManager em = emf.createEntityManager();
         
-        Query q = em.createQuery("SELECT COUNT(s) FROM Semester s WHERE s.name = :name");
-        q.setParameter("name", name);
+        Query q = em.createQuery("SELECT s FROM Student s WHERE s.currentSemester.name = :name");
+        q.setParameter("name", semesterName);
         List<Student> studentsForSemester = q.getResultList();
         return studentsForSemester;
     }
